@@ -18,9 +18,15 @@
      → そのまま［ホーム画面に追加］すれば、アイコンが ?home=1 を覚える。
    ★Safari の中で開く（全画面アプリにはしない）：Safari に学校のアカウントでログインしてあるので、そのまま入れる */
 var 週案 = 'https://script.google.com/a/macros/koto.ed.jp/s/AKfycbzS0lq0RG9L2kWX0dXDR1VwwdMk580Lrnw0VCpTGnk-sZLZ2WK5NJheaXqESBX_aZgyKQ/exec';
-if (/[?&]home=1/.test(location.search)) {
+/* ★10/3 直し：はじめて開いたタブで読みこみ直されても（Safari はほかのアプリから戻ると読みこみ直すことがある）
+     週案へ移らないように、「このタブは手順を見せたタブ」という印（sessionStorage）を置く。
+     ホーム画面のアイコンから開くと新しいタブ＝印が無い → 週案へ移る */
+var 手順のタブ = false;
+try { 手順のタブ = sessionStorage.getItem('shuan_setup') === '1'; } catch (e) {}
+if (/[?&]home=1/.test(location.search) && !手順のタブ) {
   location.replace(週案);
 } else {
+  try { sessionStorage.setItem('shuan_setup', '1'); } catch (e) {}
   try { history.replaceState(null, '', location.pathname + '?home=1'); } catch (e) {}
 }
 </script>
@@ -40,7 +46,9 @@ h1{margin:0;font-size:28px;letter-spacing:.08em}
 .steps b{color:var(--navy)}
 .share{display:inline-block;vertical-align:-3px;width:18px;height:18px}
 .go{display:block;width:100%;min-height:52px;border-radius:14px;background:var(--navy);color:var(--bg);font-size:17px;font-weight:700;text-decoration:none;display:flex;align-items:center;justify-content:center}
-.note{font-size:13px;color:var(--sub);line-height:1.6;margin:0}
+.note{font-size:13px;color:var(--sub);line-height:1.8;margin:0}
+.warn{margin:0;width:100%;font-size:15px;line-height:1.6;color:var(--ink);background:var(--card);border-radius:14px;box-shadow:0 0 0 2px #e0a33a;padding:12px 14px;text-align:left}
+.small{color:var(--sub)}
 </style>
 </head>
 <body>
@@ -55,8 +63,9 @@ h1{margin:0;font-size:28px;letter-spacing:.08em}
     <li><span><b>ホーム画面に追加</b> を押す（名前は「週案」のまま）</span></li>
     <li><span>ホーム画面の <b>たぬき</b> を押すと、週案が開きます</span></li>
   </ol>
-  <a class="go" href="https://script.google.com/a/macros/koto.ed.jp/s/AKfycbzS0lq0RG9L2kWX0dXDR1VwwdMk580Lrnw0VCpTGnk-sZLZ2WK5NJheaXqESBX_aZgyKQ/exec">いま週案をひらく</a>
-  <p class="note">前にホーム画面に置いた週案（白いアイコン）は、長押しして消してください。<br>開くには、学校の Google アカウントでのログインが要ります。</p>
+  <p class="warn">★<b>この画面（たぬきが見えている画面）のまま</b>共有を押してください。<br>週案を開いてから追加すると、アイコンが「週」の字になります。</p>
+  <p class="note">前にホーム画面に置いた週案（「週」や白いアイコン）は、長押しして消してください。<br>開くには、学校の Google アカウントでのログインが要ります。<br>
+  <a class="small" href="https://script.google.com/a/macros/koto.ed.jp/s/AKfycbzS0lq0RG9L2kWX0dXDR1VwwdMk580Lrnw0VCpTGnk-sZLZ2WK5NJheaXqESBX_aZgyKQ/exec">ホーム画面に置かずに、いま開く</a></p>
 </main>
 </body>
 </html>
