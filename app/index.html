@@ -44,6 +44,7 @@ h1{margin:0;font-size:28px;letter-spacing:.08em}
 .steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.6}
 .steps li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--bg);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px;margin-top:1px}
 .steps b{color:var(--navy)}
+.steps small{color:var(--sub);font-size:13px}
 .share{display:inline-block;vertical-align:-3px;width:18px;height:18px}
 .go{display:block;width:100%;min-height:52px;border-radius:14px;background:var(--navy);color:var(--bg);font-size:17px;font-weight:700;text-decoration:none;display:flex;align-items:center;justify-content:center}
 .note{font-size:13px;color:var(--sub);line-height:1.8;margin:0}
@@ -60,7 +61,9 @@ h1{margin:0;font-size:28px;letter-spacing:.08em}
     <li><span>Safari の下の <b>共有</b>
       <svg class="share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>
       を押す</span></li>
-    <li><span><b>ホーム画面に追加</b> を押す（名前は「週案」のまま）</span></li>
+    <li><span><b>ホーム画面に追加</b> を押す</span></li>
+    <li><span>出てきた画面の <b>「Webアプリとして開く」をオフ</b> にして、右上の <b>追加</b>（名前は「週案」のまま）<br>
+      <small>オンのままだと、開くたびに Google のログインを求められます</small></span></li>
     <li><span>ホーム画面の <b>たぬき</b> を押すと、週案が開きます</span></li>
   </ol>
   <p class="warn">★<b>この画面（たぬきが見えている画面）のまま</b>共有を押してください。<br>週案を開いてから追加すると、アイコンが「週」の字になります。</p>
