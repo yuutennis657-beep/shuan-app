@@ -1,0 +1,12 @@
+{
+  "name": "週案",
+  "short_name": "週案",
+  "start_url": "./?home=1",
+  "display": "browser",
+  "background_color": "#fbf6e9",
+  "theme_color": "#12395f",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

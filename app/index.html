@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>週案</title>
+<meta name="apple-mobile-web-app-title" content="週案">
+<meta name="application-name" content="週案">
+<meta name="theme-color" content="#12395f">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<script>
+/* 週案の入口（ホーム画面のアイコンのためだけのページ）。
+   ★ホーム画面から開いたとき（?home=1）は、すぐ週案（学校の Google のアプリ）へ移る。
+   ★はじめて開いたときは、アドレスを ?home=1 に書きかえてから手順を見せる
+     → そのまま［ホーム画面に追加］すれば、アイコンが ?home=1 を覚える。
+   ★Safari の中で開く（全画面アプリにはしない）：Safari に学校のアカウントでログインしてあるので、そのまま入れる */
+var 週案 = 'https://script.google.com/a/macros/koto.ed.jp/s/AKfycbzS0lq0RG9L2kWX0dXDR1VwwdMk580Lrnw0VCpTGnk-sZLZ2WK5NJheaXqESBX_aZgyKQ/exec';
+if (/[?&]home=1/.test(location.search)) {
+  location.replace(週案);
+} else {
+  try { history.replaceState(null, '', location.pathname + '?home=1'); } catch (e) {}
+}
+</script>
+<style>
+:root{--ink:#0f1722;--sub:#5a6573;--navy:#12395f;--bg:#fbf6e9;--card:#fff;--line:#eadfc4}
+@media (prefers-color-scheme: dark){:root{--ink:#eef2f7;--sub:#a9b4c2;--navy:#9cc3ec;--bg:#141a22;--card:#1d2530;--line:#2c3644}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;
+  padding:calc(24px + env(safe-area-inset-top,0px)) 16px calc(32px + env(safe-area-inset-bottom,0px))}
+.wrap{max-width:440px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+.icon{width:120px;height:120px;border-radius:27px;box-shadow:0 10px 26px -12px rgba(80,50,0,.45)}
+h1{margin:0;font-size:28px;letter-spacing:.08em}
+.lead{margin:0;color:var(--sub);font-size:15px;line-height:1.7}
+.steps{width:100%;background:var(--card);border-radius:18px;box-shadow:0 0 0 1px var(--line);padding:16px 18px;text-align:left;margin:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:12px}
+.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.6}
+.steps li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--bg);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px;margin-top:1px}
+.steps b{color:var(--navy)}
+.share{display:inline-block;vertical-align:-3px;width:18px;height:18px}
+.go{display:block;width:100%;min-height:52px;border-radius:14px;background:var(--navy);color:var(--bg);font-size:17px;font-weight:700;text-decoration:none;display:flex;align-items:center;justify-content:center}
+.note{font-size:13px;color:var(--sub);line-height:1.6;margin:0}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <img class="icon" src="apple-touch-icon.png" alt="週案のアイコン（たぬき）" width="120" height="120">
+  <h1>週案</h1>
+  <p class="lead">スマホのホーム画面に、このアイコンで<br>週案を置くためのページです。</p>
+  <ol class="steps">
+    <li><span>Safari の下の <b>共有</b>
+      <svg class="share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>
+      を押す</span></li>
+    <li><span><b>ホーム画面に追加</b> を押す（名前は「週案」のまま）</span></li>
+    <li><span>ホーム画面の <b>たぬき</b> を押すと、週案が開きます</span></li>
+  </ol>
+  <a class="go" href="https://script.google.com/a/macros/koto.ed.jp/s/AKfycbzS0lq0RG9L2kWX0dXDR1VwwdMk580Lrnw0VCpTGnk-sZLZ2WK5NJheaXqESBX_aZgyKQ/exec">いま週案をひらく</a>
+  <p class="note">前にホーム画面に置いた週案（白いアイコン）は、長押しして消してください。<br>開くには、学校の Google アカウントでのログインが要ります。</p>
+</main>
+</body>
+</html>
